@@ -1,0 +1,80 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+$banners = $block->getFrontBanners();
+
+
+?>
+<div>
+    <div class="flexslider">
+        <ul class="slides">
+            <?php                     
+                                              
+          foreach ( $banners as $index => $banner ) 
+          { 
+           ?>
+               <li>
+          
+              
+             
+				<p class="flex-caption">
+				<a target="<?php echo $banner->getTarget() ?>" href="<?php echo $banner->getLink() ?>">
+				   <?php echo $banner->getTitle() ?>
+				</a> 
+				</p>
+				
+				
+               
+
+               <img src=<?php echo $block->getMediaDirectoryUrl().$banner->getBannerimage() ?> />
+          </li>
+          <?php } ?>
+                  
+        </ul>
+    </div>       
+</div> 
+
+
+
+
+
+<script type="text/javascript">
+            require([
+                'jquery','flexslider'
+            ],function($j){
+                $j(window).load(function() {
+                    $j('.flexslider').flexslider({
+                        animation: 'slide',
+                       start: function(slider){
+                    $j('body').removeClass('loading');
+                    } 
+                    });
+                });
+            });
+        </script>
+		
+		
+		
+<style type="text/css">
+.flex-caption {
+  top: 0;
+  width: 96%;
+  padding: 2%;
+  left: 0;
+  color: black;
+  font-size: 14px;
+  line-height: 18px;
+  position: absolute;
+}
+.flexslider .slides > li {
+  display: none;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+}
+</style>
+</div>
